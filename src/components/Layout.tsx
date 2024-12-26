@@ -31,11 +31,6 @@ export const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, childre
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm">
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6109642877288613"
-          crossOrigin="anonymous"
-        ></script>
         <div className="max-w-7xl mx-auto px-4 py-4">
           <h1 className="text-2xl font-bold text-gray-800">Calcule ja</h1>
         </div>
