@@ -88,7 +88,7 @@ export const BillSplitter: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-6">
-        {people.map(person => (
+        {people.map((person) => (
           <div key={person.id} className="border rounded-lg p-4 space-y-4">
             <div className="flex justify-between items-center">
               <input
@@ -96,12 +96,12 @@ export const BillSplitter: React.FC = () => {
                 placeholder="Nome da pessoa"
                 value={person.name}
                 onChange={(e) => updatePersonName(person.id, e.target.value)}
-                className="block w-full max-w-xs rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
               />
               {people.length > 1 && (
                 <button
                   onClick={() => removePerson(person.id)}
-                  className="text-red-500 hover:text-red-700"
+                  className="m-1 px-4 py-2 text-white rounded-md bg-red-500 hover:bg-red-700"
                 >
                   Remover
                 </button>
@@ -111,31 +111,51 @@ export const BillSplitter: React.FC = () => {
             <div className="space-y-2">
               {person.items.map((item, index) => (
                 <div key={index} className="flex gap-2">
-                  <input
-                    type="text"
-                    placeholder="Descrição"
-                    value={item.description}
-                    onChange={(e) => updateItem(person.id, index, 'description', e.target.value)}
-                    className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  />
-                  <input
-                    type="number"
-                    placeholder="Valor"
-                    value={item.value || ''}
-                    onChange={(e) => updateItem(person.id, index, 'value', Number(e.target.value))}
-                    className="w-32 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  />
-                  <button
-                    onClick={() => removeItem(person.id, index)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    Remover
-                  </button>
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Descrição"
+                      value={item.description}
+                      onChange={(e) =>
+                        updateItem(
+                          person.id,
+                          index,
+                          "description",
+                          e.target.value
+                        )
+                      }
+                      className="flex-1 mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      placeholder="Valor"
+                      value={item.value || ""}
+                      onChange={(e) =>
+                        updateItem(
+                          person.id,
+                          index,
+                          "value",
+                          Number(e.target.value)
+                        )
+                      }
+                      className="w-32 mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => removeItem(person.id, index)}
+                      className="mt-1 px-4 py-2 text-white rounded-md bg-red-500 hover:bg-red-700"
+                    >
+                      Remover
+                    </button>
+                  </div>
                 </div>
               ))}
               <button
                 onClick={() => addItem(person.id)}
-                className="text-blue-500 hover:text-blue-700"
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
               >
                 + Adicionar Item
               </button>
@@ -143,7 +163,8 @@ export const BillSplitter: React.FC = () => {
 
             <div className="text-right">
               <p className="text-sm text-gray-600">
-                Total (com gorjeta): R$ {calculatePersonTotal(person.id).toFixed(2)}
+                Total (com gorjeta): R${" "}
+                {calculatePersonTotal(person.id).toFixed(2)}
               </p>
             </div>
           </div>
@@ -152,12 +173,14 @@ export const BillSplitter: React.FC = () => {
 
       <div className="bg-gray-50 p-6 rounded-lg">
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Gorjeta (%)</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Gorjeta (%)
+          </label>
           <input
             type="number"
             value={tip}
             onChange={(e) => setTip(e.target.value)}
-            className="mt-1 block w-full max-w-xs rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
           />
         </div>
 

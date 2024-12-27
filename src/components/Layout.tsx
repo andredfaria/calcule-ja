@@ -1,11 +1,10 @@
-import React from 'react';
 import {
   Calculator,
   Calendar,
   Gauge,
-  Scale,
-  SplitSquareHorizontal,
+  SplitSquareHorizontal
 } from "lucide-react";
+import React from 'react';
 import Footer from './Footer';
 
 interface NavItemProps {

@@ -47,35 +47,46 @@ export const DateTimeConverter: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
+          {/** Campo de Data */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Data</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Data
+            </label>
             <input
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
+          {/** Campo de Hora */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Hora</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Hora
+            </label>
             <input
               type="time"
               value={selectedTime}
               onChange={(e) => setSelectedTime(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
+          {/** Campo de Fuso Horigem */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">Fuso Horário de Origem</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Fuso Horário de Origem
+            </label>
             <select
               value={selectedTimezone}
               onChange={(e) => setSelectedTimezone(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
             >
               {timezones.map(({ value, label }) => (
-                <option key={value} value={value}>{label}</option>
+                <option key={value} value={value}>
+                  {label}
+                </option>
               ))}
             </select>
           </div>
@@ -83,7 +94,7 @@ export const DateTimeConverter: React.FC = () => {
 
         <div className="bg-gray-50 p-6 rounded-lg">
           <h3 className="text-lg font-medium mb-4">Conversões</h3>
-          
+
           <div className="space-y-4">
             {conversions.map(({ zone, time }) => (
               <div key={zone} className="flex justify-between items-center">
