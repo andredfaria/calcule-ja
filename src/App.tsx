@@ -6,7 +6,7 @@ import { DateTimeConverter } from './components/DateTimeConverter';
 import { BillSplitter } from './components/BillSplitter';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('health');
+  const [activeTab, setActiveTab] = useState('split');
 
   const renderContent = () => {
     switch (activeTab) {
