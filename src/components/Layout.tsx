@@ -2,7 +2,9 @@ import {
   Calculator,
   Calendar,
   Gauge,
-  SplitSquareHorizontal
+  SplitSquareHorizontal,
+  Fuel,
+  TrafficCone,
 } from "lucide-react";
 import React from 'react';
 import Footer from './Footer';
@@ -67,6 +69,18 @@ export const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, childre
               text="Datas e Horários"
               active={activeTab === "datetime"}
               onClick={() => setActiveTab("datetime")}
+            />
+            <NavItem
+              icon={<Fuel className="w-5 h-5" />}
+              text="Combustível"
+              active={activeTab === "fuel"}
+              onClick={() => setActiveTab("fuel")}
+            />
+            <NavItem
+              icon={<TrafficCone className="w-5 h-5" />}
+              text="Calculo de Viagem"
+              active={activeTab === "gas"}
+              onClick={() => setActiveTab("gas")}
             />
           </nav>
           <main className="bg-white p-6 rounded-lg shadow-sm">{children}</main>

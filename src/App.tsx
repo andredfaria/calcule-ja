@@ -4,20 +4,26 @@ import { HealthCalculator } from './components/HealthCalculator';
 import { FinanceCalculator } from './components/FinanceCalculator';
 import { DateTimeConverter } from './components/DateTimeConverter';
 import { BillSplitter } from './components/BillSplitter';
+import { GasCalculator } from './components/GasCalculator';
+import { FuelCalculator } from './components/FuelCalculator';
 
 function App() {
   const [activeTab, setActiveTab] = useState('split');
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'health':
+      case "health":
         return <HealthCalculator />;
-      case 'finance':
+      case "finance":
         return <FinanceCalculator />;
-      case 'datetime':
+      case "datetime":
         return <DateTimeConverter />;
-      case 'split':
+      case "split":
         return <BillSplitter />;
+      case "gas":
+        return <GasCalculator />;
+      case "fuel":
+        return <FuelCalculator />;
       default:
         return null;
     }
