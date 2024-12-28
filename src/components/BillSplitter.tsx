@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface Person {
   id: number;
@@ -8,69 +8,85 @@ interface Person {
 
 export const BillSplitter: React.FC = () => {
   const [people, setPeople] = useState<Person[]>([
-    { id: 1, name: '', items: [] }
+    { id: 1, name: "", items: [] },
   ]);
-  const [tip, setTip] = useState('');
+  const [includeTax, setIncludeTax] = useState(false);
 
   const addPerson = () => {
-    setPeople([...people, { id: Date.now(), name: '', items: [] }]);
+    setPeople([...people, { id: Date.now(), name: "", items: [] }]);
   };
 
   const removePerson = (id: number) => {
-    setPeople(people.filter(person => person.id !== id));
+    setPeople(people.filter((person) => person.id !== id));
   };
 
   const updatePersonName = (id: number, name: string) => {
-    setPeople(people.map(person => 
-      person.id === id ? { ...person, name } : person
-    ));
+    setPeople(
+      people.map((person) => (person.id === id ? { ...person, name } : person))
+    );
   };
 
   const addItem = (personId: number) => {
-    setPeople(people.map(person => 
-      person.id === personId 
-        ? { ...person, items: [...person.items, { description: '', value: 0 }] }
-        : person
-    ));
+    setPeople(
+      people.map((person) =>
+        person.id === personId
+          ? {
+              ...person,
+              items: [...person.items, { description: "", value: 0 }],
+            }
+          : person
+      )
+    );
   };
 
-  const updateItem = (personId: number, index: number, field: 'description' | 'value', value: string | number) => {
-    setPeople(people.map(person => {
-      if (person.id === personId) {
-        const newItems = [...person.items];
-        newItems[index] = { ...newItems[index], [field]: value };
-        return { ...person, items: newItems };
-      }
-      return person;
-    }));
+  const updateItem = (
+    personId: number,
+    index: number,
+    field: "description" | "value",
+    value: string | number
+  ) => {
+    setPeople(
+      people.map((person) => {
+        if (person.id === personId) {
+          const newItems = [...person.items];
+          newItems[index] = { ...newItems[index], [field]: value };
+          return { ...person, items: newItems };
+        }
+        return person;
+      })
+    );
   };
 
   const removeItem = (personId: number, index: number) => {
-    setPeople(people.map(person => 
-      person.id === personId 
-        ? { ...person, items: person.items.filter((_, i) => i !== index) }
-        : person
-    ));
+    setPeople(
+      people.map((person) =>
+        person.id === personId
+          ? { ...person, items: person.items.filter((_, i) => i !== index) }
+          : person
+      )
+    );
   };
 
   const calculateTotal = () => {
-    const subtotal = people.reduce((total, person) => 
-      total + person.items.reduce((sum, item) => sum + item.value, 0), 0
+    const subtotal = people.reduce(
+      (total, person) =>
+        total + person.items.reduce((sum, item) => sum + item.value, 0),
+      0
     );
-    const tipAmount = subtotal * (Number(tip) / 100);
+    const taxAmount = includeTax ? subtotal * 0.1 : 0;
     return {
       subtotal,
-      tipAmount,
-      total: subtotal + tipAmount
+      taxAmount,
+      total: subtotal + taxAmount,
     };
   };
 
   const calculatePersonTotal = (personId: number) => {
-    const person = people.find(p => p.id === personId);
+    const person = people.find((p) => p.id === personId);
     if (!person) return 0;
     const subtotal = person.items.reduce((sum, item) => sum + item.value, 0);
-    const tipShare = subtotal * (Number(tip) / 100);
-    return subtotal + tipShare;
+    const taxShare = includeTax ? subtotal * 0.1 : 0;
+    return subtotal + taxShare;
   };
 
   const totals = calculateTotal();
@@ -163,7 +179,7 @@ export const BillSplitter: React.FC = () => {
 
             <div className="text-right">
               <p className="text-sm text-gray-600">
-                Total (com gorjeta): R${" "}
+                Total (com taxa): R${" "}
                 {calculatePersonTotal(person.id).toFixed(2)}
               </p>
             </div>
@@ -174,13 +190,13 @@ export const BillSplitter: React.FC = () => {
       <div className="bg-gray-50 p-6 rounded-lg">
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
-            Gorjeta (%)
+            Incluir taxa de 10%?
           </label>
           <input
-            type="number"
-            value={tip}
-            onChange={(e) => setTip(e.target.value)}
-            className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+            type="checkbox"
+            checked={includeTax}
+            onChange={(e) => setIncludeTax(e.target.checked)}
+            className="mt-1"
           />
         </div>
 
@@ -190,8 +206,8 @@ export const BillSplitter: React.FC = () => {
             <span>R$ {totals.subtotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">Gorjeta:</span>
-            <span>R$ {totals.tipAmount.toFixed(2)}</span>
+            <span className="text-gray-600">Taxa (10%):</span>
+            <span>R$ {totals.taxAmount.toFixed(2)}</span>
           </div>
           <div className="flex justify-between font-bold">
             <span>Total:</span>
