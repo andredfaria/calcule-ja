@@ -2,9 +2,9 @@ import {
   Calculator,
   Calendar,
   Gauge,
-  SplitSquareHorizontal,
   Fuel,
   TrafficCone,
+  Percent,
 } from "lucide-react";
 import React from 'react';
 import Footer from './Footer';
@@ -47,6 +47,25 @@ export const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, childre
         <div className="grid grid-cols-1 md:grid-cols-[250px,1fr] gap-6">
           <nav className="space-y-2 bg-white p-4 rounded-lg shadow-sm">
             <NavItem
+              icon={<Calculator className="w-5 h-5" />}
+              text="Regra de 3"
+              active={activeTab === "cross-multiplication"}
+              onClick={() => setActiveTab("cross-multiplication")}
+            />
+            <NavItem
+              icon={<Percent className="w-5 h-5" />}
+              text="Porcentagem"
+              active={activeTab === "percentage"}
+              onClick={() => setActiveTab("percentage")}
+            />
+            {/*
+            <NavItem
+              icon={<Percent className="w-5 h-5" />}
+              text="Proporção"
+              active={activeTab === "proporcao"}
+              onClick={() => setActiveTab("proporcao")}
+            />
+            <NavItem
               icon={<SplitSquareHorizontal className="w-5 h-5" />}
               text="Divisão de Contas"
               active={activeTab === "split"}
@@ -57,18 +76,12 @@ export const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, childre
               text="Parcelamento"
               active={activeTab === "finance"}
               onClick={() => setActiveTab("finance")}
-            />
+            /> */}
             <NavItem
               icon={<Gauge className="w-5 h-5" />}
               text="IMC"
               active={activeTab === "health"}
               onClick={() => setActiveTab("health")}
-            />
-            <NavItem
-              icon={<Calendar className="w-5 h-5" />}
-              text="Datas e Horários"
-              active={activeTab === "datetime"}
-              onClick={() => setActiveTab("datetime")}
             />
             <NavItem
               icon={<Fuel className="w-5 h-5" />}
@@ -81,6 +94,12 @@ export const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, childre
               text="Calculo de Viagem"
               active={activeTab === "gas"}
               onClick={() => setActiveTab("gas")}
+            />
+            <NavItem
+              icon={<Calendar className="w-5 h-5" />}
+              text="Datas e Horários"
+              active={activeTab === "datetime"}
+              onClick={() => setActiveTab("datetime")}
             />
           </nav>
           <main className="bg-white p-6 rounded-lg shadow-sm">{children}</main>
