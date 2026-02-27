@@ -171,7 +171,7 @@ export const BillSplitter: React.FC = () => {
         ))}
       </div>
 
-      <div className="bg-gray-50 p-6 rounded-lg">
+      <div className="result-card">
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Gorjeta (%)

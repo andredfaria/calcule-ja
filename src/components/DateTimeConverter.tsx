@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
 
+const TIMEZONES = [
+  { value: 'UTC', label: 'UTC' },
+  { value: 'America/Sao_Paulo', label: 'São Paulo' },
+  { value: 'America/New_York', label: 'New York' },
+  { value: 'Europe/London', label: 'London' },
+  { value: 'Europe/Paris', label: 'Paris' },
+  { value: 'Asia/Tokyo', label: 'Tokyo' },
+  { value: 'Australia/Sydney', label: 'Sydney' },
+];
+
 export const DateTimeConverter: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedTimezone, setSelectedTimezone] = useState('UTC');
   const [conversions, setConversions] = useState<{ zone: string; time: string }[]>([]);
 
-  const timezones = [
-    { value: 'UTC', label: 'UTC' },
-    { value: 'America/Sao_Paulo', label: 'São Paulo' },
-    { value: 'America/New_York', label: 'New York' },
-    { value: 'Europe/London', label: 'London' },
-    { value: 'Europe/Paris', label: 'Paris' },
-    { value: 'Asia/Tokyo', label: 'Tokyo' },
-    { value: 'Australia/Sydney', label: 'Sydney' }
-  ];
-
   useEffect(() => {
     if (selectedDate && selectedTime) {
       const datetime = new Date(`${selectedDate}T${selectedTime}`);
       
-      const newConversions = timezones.map(({ value, label }) => {
+      const newConversions = TIMEZONES.map(({ value, label }) => {
         const options = {
           timeZone: value,
           year: 'numeric',
@@ -83,7 +83,7 @@ export const DateTimeConverter: React.FC = () => {
               onChange={(e) => setSelectedTimezone(e.target.value)}
               className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
             >
-              {timezones.map(({ value, label }) => (
+              {TIMEZONES.map(({ value, label }) => (
                 <option key={value} value={value}>
                   {label}
                 </option>
@@ -92,7 +92,7 @@ export const DateTimeConverter: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-gray-50 p-6 rounded-lg">
+        <div className="result-card">
           <h3 className="text-lg font-medium mb-4">Conversões</h3>
 
           <div className="space-y-4">

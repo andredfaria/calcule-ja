@@ -1,59 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Bebas+Neue&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    --color-bg: #0a0f1f;
+    --color-surface: #141b31;
+    --color-primary: #4cc9f0;
+    --color-accent: #ff9e00;
+    --color-text: #f2f5ff;
   }
- 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
-  }
-}
- 
-@layer base {
+
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--color-text);
+    background:
+      radial-gradient(circle at 10% 10%, rgba(76, 201, 240, 0.18), transparent 40%),
+      radial-gradient(circle at 90% 20%, rgba(255, 158, 0, 0.2), transparent 40%),
+      repeating-linear-gradient(
+        140deg,
+        rgba(255, 255, 255, 0.02) 0,
+        rgba(255, 255, 255, 0.02) 2px,
+        transparent 2px,
+        transparent 12px
+      ),
+      var(--color-bg);
+  }
+}
+
+@layer components {
+  .app-shell {
+    @apply mx-auto max-w-7xl px-4 py-6;
+  }
+
+  .app-header {
+    @apply mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between;
+  }
+
+  .app-kicker {
+    @apply text-xs uppercase tracking-[0.2em] text-cyan-200/80;
+  }
+
+  .app-title {
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 0.08em;
+    @apply text-6xl leading-none text-white;
+  }
+
+  .app-subtitle {
+    @apply max-w-sm text-sm text-slate-300;
+  }
+
+  .app-grid {
+    @apply grid grid-cols-1 gap-5 md:grid-cols-[270px,1fr];
+  }
+
+  .sidebar,
+  .main-panel,
+  .footer-shell {
+    background: linear-gradient(160deg, rgba(20, 27, 49, 0.92), rgba(9, 14, 28, 0.94));
+    border: 1px solid rgba(76, 201, 240, 0.18);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    @apply rounded-2xl backdrop-blur;
+  }
+
+  .sidebar {
+    @apply p-4;
+  }
+
+  .sidebar-title {
+    @apply mb-3 text-xs uppercase tracking-[0.18em] text-cyan-100/70;
+  }
+
+  .sidebar-nav {
+    @apply space-y-2;
+  }
+
+  .nav-item,
+  .mobile-nav-item {
+    @apply flex w-full items-center gap-2 rounded-xl border border-transparent px-3 py-2 text-left text-sm text-slate-200 transition duration-300;
+  }
+
+  .nav-item:hover,
+  .mobile-nav-item:hover {
+    transform: translateX(4px);
+    border-color: rgba(76, 201, 240, 0.5);
+    background: rgba(76, 201, 240, 0.08);
+  }
+
+  .nav-item-active,
+  .mobile-nav-item-active {
+    border-color: rgba(255, 158, 0, 0.8);
+    background: rgba(255, 158, 0, 0.14);
+    color: white;
+  }
+
+  .main-panel {
+    @apply p-5 md:p-8;
+  }
+
+  .mobile-nav {
+    @apply fixed bottom-2 left-1/2 z-20 flex w-[95%] -translate-x-1/2 gap-1 overflow-x-auto rounded-2xl border border-cyan-300/30 bg-slate-950/85 p-2 backdrop-blur;
+  }
+
+  .mobile-nav-item {
+    @apply min-w-[78px] flex-col px-2 py-1 text-[11px];
+  }
+
+  .calc-stage {
+    animation: stageIn 340ms ease;
+  }
+
+  .calc-stage h2 {
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 0.06em;
+    @apply text-4xl text-white;
+  }
+
+  .calc-stage label,
+  .calc-stage p,
+  .calc-stage span,
+  .calc-stage h3 {
+    @apply text-slate-100;
+  }
+
+  .calc-stage input,
+  .calc-stage select,
+  .app-input,
+  .calc-stage textarea {
+    @apply w-full rounded-xl border border-cyan-300/25 bg-slate-900/70 px-4 py-2 text-slate-50 outline-none transition;
+  }
+
+  .calc-stage input:focus,
+  .calc-stage select:focus,
+  .app-input:focus,
+  .calc-stage textarea:focus {
+    box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.2);
+    border-color: var(--color-primary);
+  }
+
+  .calc-stage button,
+  .app-button {
+    @apply rounded-xl border border-cyan-200/40 px-4 py-2 font-semibold text-white transition;
+    background: linear-gradient(120deg, #1a9ec5, #246fb8);
+  }
+
+  .calc-stage button:hover,
+  .app-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(76, 201, 240, 0.3);
+  }
+
+  .result-card {
+    border: 1px solid rgba(255, 158, 0, 0.45);
+    background: rgba(255, 158, 0, 0.08);
+    animation: pulseCard 2.2s ease-in-out infinite;
+    @apply rounded-xl p-5;
+  }
+
+  .footer-shell {
+    @apply mt-8 p-6;
+  }
+
+  .footer-grid {
+    @apply grid gap-6 md:grid-cols-3;
+  }
+
+  .footer-title {
+    @apply mb-2 text-lg font-bold text-white;
+  }
+
+  .footer-text {
+    @apply text-sm text-slate-300;
+  }
+
+  .footer-highlight {
+    @apply text-sm font-bold text-amber-300;
+  }
+
+  .footer-link {
+    @apply text-cyan-300 underline;
+  }
+}
+
+@keyframes stageIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseCard {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 158, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(255, 158, 0, 0);
   }
 }
