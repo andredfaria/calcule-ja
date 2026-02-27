@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Components • Calcule Já</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600&display=swap');
+
+      :root,
+      :root[data-theme='light'] {
+        --surface-base: #f7f7f5;
+        --surface-raised: #ffffff;
+        --surface-overlay: #ffffff;
+        --surface-sunken: #ecefe7;
+        --text-primary: #111218;
+        --text-secondary: #4e5362;
+        --text-tertiary: #8d93a5;
+        --text-disabled: #b3b7c2;
+        --text-inverse: #0f111b;
+        --border-subtle: #d9deeb;
+        --border-default: #c4cbda;
+        --border-strong: #677ef4;
+        --border-accent: #677ef4;
+        --accent-primary: #677ef4;
+        --accent-primary-dim: rgba(103, 126, 244, 0.2);
+        --accent-success: #14a26d;
+        --accent-error: #e14e66;
+        --accent-warning: #d89a1b;
+        --shadow-sm: 0 10px 24px rgba(65, 85, 140, 0.14);
+        --shadow-md: 0 24px 60px rgba(57, 74, 129, 0.2);
+        --shadow-glow: 0 0 0 1px rgba(103, 126, 244, 0.35), 0 16px 36px rgba(103, 126, 244, 0.2);
+        --z-base: 0;
+        --z-raised: 10;
+        --z-dropdown: 100;
+        --z-sticky: 200;
+        --z-modal: 300;
+        --z-toast: 400;
+        --z-tooltip: 500;
+      }
+
+      :root[data-theme='dark'] {
+        --surface-base: #0f1117;
+        --surface-raised: #181b23;
+        --surface-overlay: #1d222d;
+        --surface-sunken: #12161f;
+        --text-primary: #edeee8;
+        --text-secondary: #afb5c8;
+        --text-tertiary: #80879f;
+        --text-disabled: #5e657f;
+        --text-inverse: #f1f3fb;
+        --border-subtle: #2a2f3f;
+        --border-default: #333b50;
+        --border-strong: #8d9bff;
+        --border-accent: #8d9bff;
+        --accent-primary: #8d9bff;
+        --accent-primary-dim: rgba(141, 155, 255, 0.22);
+        --accent-success: #33bc8e;
+        --accent-error: #ff7087;
+        --accent-warning: #e9b04e;
+        --shadow-sm: 0 15px 34px rgba(4, 8, 20, 0.55);
+        --shadow-md: 0 30px 70px rgba(2, 4, 11, 0.8);
+        --shadow-glow: 0 0 0 1px rgba(141, 155, 255, 0.38), 0 16px 40px rgba(82, 94, 181, 0.28);
+      }
+
+      *,*::before,*::after{box-sizing:border-box;transition:background-color 220ms ease,border-color 220ms ease,color 160ms ease,box-shadow 220ms ease}
+      img,video,[data-no-transition]{transition:none}
+      body{margin:0;font-family:Inter,sans-serif;color:var(--text-primary);background:radial-gradient(circle at 20% 8%,rgba(103,126,244,.11),transparent 40%),radial-gradient(circle at 86% 4%,rgba(216,154,27,.12),transparent 35%),radial-gradient(circle,rgba(136,144,166,.15) 1px,transparent 1px),var(--surface-base);background-size:auto,auto,20px 20px,auto;padding:24px}
+      :root[data-theme='dark'] body{background:radial-gradient(circle at 16% 12%,rgba(141,155,255,.09),transparent 45%),radial-gradient(circle at 86% 0%,rgba(167,112,255,.08),transparent 36%),radial-gradient(circle at 44% 100%,rgba(51,188,142,.06),transparent 44%),var(--surface-base)}
+      .demo{max-width:1200px;margin:0 auto;display:grid;gap:20px}
+      .card{background:var(--surface-raised);border:1px solid var(--border-subtle);border-radius:20px;padding:24px;box-shadow:var(--shadow-sm)}
+      h1,h2{margin:0 0 14px} h1{font-size:2rem} h2{font-size:1.25rem}
+      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+      .theme-toggle{width:52px;height:28px;border-radius:99px;border:1px solid var(--border-subtle);background:linear-gradient(130deg,#76ccff,#94a5ff);padding:2px;position:relative;cursor:pointer}
+      .theme-thumb{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:var(--surface-raised);display:grid;place-items:center;transition:transform 260ms cubic-bezier(0.34,1.56,0.64,1)}
+      .theme-star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:0;transform:translateY(4px)}
+      :root[data-theme='dark'] .theme-toggle{background:linear-gradient(130deg,#3747a0,#7a47d8)}
+      :root[data-theme='dark'] .theme-thumb{transform:translateX(24px)}
+      :root[data-theme='dark'] .theme-star{opacity:.7;animation:twinkle 1.8s ease-in-out infinite}
+
+      .input-wrapper{position:relative;padding-top:8px}
+      .input-field{position:relative;display:flex;align-items:center;background:var(--surface-sunken);border:1px solid var(--border-default);border-radius:14px;padding:20px 14px 10px;gap:8px}
+      .input-field::after{content:'';position:absolute;left:50%;right:50%;bottom:0;height:2px;background:var(--accent-primary);transition:left 220ms ease,right 220ms ease}
+      .input-wrapper:focus-within .input-field::after{left:0;right:0}
+      .input-wrapper:focus-within .input-field{border-color:var(--border-strong);box-shadow:0 0 0 3px var(--accent-primary-dim)}
+      .input-control,.textarea-control{width:100%;border:0;background:transparent;color:var(--text-primary);outline:0;font:inherit}
+      .input-label{position:absolute;left:16px;top:28px;transform:translateY(-50%);font-size:1rem;color:var(--text-tertiary);pointer-events:none;transition:top 180ms cubic-bezier(.4,0,.2,1),font-size 180ms cubic-bezier(.4,0,.2,1),color 180ms ease,transform 180ms cubic-bezier(.4,0,.2,1)}
+      .input-wrapper:focus-within .input-label,.input-wrapper.is-filled .input-label{top:16px;transform:none;font-size:.72rem;color:var(--accent-primary);font-weight:500}
+      .hint{font-size:.78rem;color:var(--text-tertiary);margin-top:6px;min-height:1em}
+      .input-wrapper.is-error .input-field{border-color:var(--accent-error);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent-error) 22%,transparent);animation:shake 300ms ease}
+      .input-wrapper.is-success .input-field{border-color:var(--accent-success)}
+      .input-wrapper.is-loading .input-field{pointer-events:none;opacity:.75}
+      .status-icon{opacity:0;transform:scale(.6);transition:transform 150ms ease,opacity 150ms ease}
+      .input-wrapper.is-error .error-icon,.input-wrapper.is-success .success-icon,.input-wrapper.is-loading .loader{opacity:1;transform:scale(1)}
+      .loader{width:16px;height:16px;border:2px solid var(--border-default);border-top-color:var(--accent-primary);border-radius:50%;animation:spin .8s linear infinite}
+      .success-icon svg{width:18px;height:18px;stroke:var(--accent-success);fill:none;stroke-width:2;stroke-dasharray:20;stroke-dashoffset:20;animation:draw .35s ease forwards}
+
+      .custom-select{position:relative}.select-trigger{width:100%;padding:12px 14px;border-radius:12px;background:var(--surface-sunken);border:1px solid var(--border-default);display:flex;justify-content:space-between;cursor:pointer}
+      .chevron{transition:transform 220ms ease}.custom-select.open .chevron{transform:rotate(180deg)}
+      .select-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--surface-overlay);border:1px solid var(--border-subtle);border-radius:12px;padding:8px;z-index:var(--z-dropdown);box-shadow:var(--shadow-md)}
+      .custom-select.open .select-menu{display:block;animation:fadeSlide .18s ease}
+      .option{padding:10px;border-radius:8px;cursor:pointer}.option:hover{background:var(--accent-primary-dim)}
+
+      .range-wrap{position:relative}.range{width:100%;appearance:none;height:6px;background:linear-gradient(90deg,var(--accent-primary) var(--fill,35%),var(--border-subtle) var(--fill,35%));border-radius:999px;outline:none}
+      .range::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:var(--surface-raised);border:2px solid var(--accent-primary);box-shadow:var(--shadow-sm);transition:transform 140ms ease}.range:hover::-webkit-slider-thumb{transform:scale(1.2)}
+      .range-tip{position:absolute;top:-28px;left:var(--fill,35%);transform:translateX(-50%);font-size:.78rem;background:var(--surface-overlay);padding:3px 8px;border-radius:999px;border:1px solid var(--border-subtle)}
+
+      .mini-toggle{display:flex;align-items:center;gap:10px}.switch{width:40px;height:22px;border-radius:999px;background:var(--border-default);padding:2px;position:relative;cursor:pointer}.switch::before{content:'';width:18px;height:18px;border-radius:50%;background:var(--surface-overlay);position:absolute;left:2px;top:2px;transition:transform 220ms cubic-bezier(0.34,1.56,0.64,1)}
+      .switch[aria-checked='true']{background:var(--accent-primary)}.switch[aria-checked='true']::before{transform:translateX(18px)}
+
+      .textarea-control{resize:none;overflow:hidden;min-height:90px}.counter{text-align:right;font-size:.75rem;color:var(--text-tertiary)}
+      .counter.warn{color:var(--accent-warning)} .counter.danger{color:var(--accent-error)}
+
+      .toasts{position:fixed;right:16px;bottom:16px;display:grid;gap:10px;z-index:var(--z-toast)}
+      .toast{min-width:280px;background:var(--surface-overlay);border:1px solid var(--border-subtle);border-left:4px solid var(--accent-primary);padding:12px;border-radius:12px;box-shadow:var(--shadow-md);animation:toastIn .28s ease-out}
+      .toast.exit{animation:toastOut .22s ease-in forwards}.progress{height:3px;background:var(--accent-primary);margin-top:8px;transform-origin:left;animation:drain 4s linear forwards}
+
+      .skeleton{display:grid;gap:10px}.sk{height:14px;border-radius:8px;background:linear-gradient(110deg,var(--surface-sunken) 8%,color-mix(in srgb,var(--surface-sunken) 60%,#fff) 18%,var(--surface-sunken) 33%);background-size:200% 100%;animation:shimmer 1.2s linear infinite}
+
+      [data-tooltip]{position:relative}.tooltip{position:absolute;max-width:220px;background:var(--surface-overlay);border:1px solid var(--border-subtle);padding:8px 10px;border-radius:10px;box-shadow:var(--shadow-sm);font-size:.8rem;opacity:0;transform:translateY(8px);pointer-events:none;z-index:var(--z-tooltip)}
+      .tooltip.show{opacity:1;transform:translateY(0)}
+
+      .result{opacity:0;transform:scale(.95);background:var(--surface-raised);border:1px solid var(--border-subtle);border-radius:14px;padding:16px}
+      .result.show{opacity:1;transform:scale(1);animation:reveal .3s ease,shadowBreath .5s ease}
+      .value{font-family:'JetBrains Mono',monospace;font-size:1.8rem}
+
+      table{width:100%;border-collapse:collapse;font-size:.84rem}th,td{padding:8px;border-bottom:1px solid var(--border-subtle)}.swatch{width:20px;height:20px;border-radius:6px;border:1px solid var(--border-subtle);display:inline-block;vertical-align:middle;margin-right:6px}
+
+      @keyframes spin{to{transform:rotate(360deg)}} @keyframes shake{20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+      @keyframes draw{to{stroke-dashoffset:0}} @keyframes toastIn{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}} @keyframes toastOut{to{opacity:0;transform:translateX(110%)}}
+      @keyframes drain{to{transform:scaleX(0)}} @keyframes shimmer{to{background-position:-200% 0}} @keyframes fadeSlide{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+      @keyframes reveal{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}} @keyframes shadowBreath{50%{box-shadow:var(--shadow-glow)}}
+      @keyframes twinkle{50%{opacity:.2}}
+      @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+    </style>
+  </head>
+  <body>
+    <main class="demo">
+      <section class="card">
+        <h1>Style Guide Interativo</h1>
+        <h2>1) Theme Toggle</h2>
+        <button id="themeToggle" class="theme-toggle" aria-label="Alternar modo escuro" aria-pressed="false"><span class="theme-thumb">☀️</span><span class="theme-star" style="left:38px;top:8px"></span><span class="theme-star" style="left:31px;top:14px"></span></button>
+      </section>
+      <section class="card">
+        <h2>2) Inputs</h2>
+        <div class="grid">
+          <div>
+            <div class="input-wrapper" id="nameWrap"><label class="input-label">Nome completo</label><div class="input-field"><input class="input-control" id="nameInput" /><span class="status-icon error-icon">❌</span><span class="status-icon success-icon"><svg viewBox="0 0 16 16"><path d="M2 8l4 4 8-8"/></svg></span><span class="status-icon loader"></span></div><div class="hint" role="alert"></div></div>
+            <div style="display:flex;gap:8px;margin-top:8px"><button data-state="error">Erro</button><button data-state="success">Sucesso</button><button data-state="loading">Loading</button></div>
+          </div>
+          <div class="custom-select" id="customSelect"><button class="select-trigger" type="button">Escolha uma opção <span class="chevron">⌄</span></button><div class="select-menu"><div class="option">Diário</div><div class="option">Semanal</div><div class="option">Mensal</div></div></div>
+          <div class="range-wrap"><input class="range" id="range" type="range" min="0" max="100" value="35" /><span class="range-tip" id="rangeTip">35%</span></div>
+          <div class="mini-toggle"><button class="switch" role="switch" aria-checked="false" id="miniSwitch"></button><span>Receber notificações</span></div>
+          <div><div class="input-wrapper is-filled"><label class="input-label" style="top:16px;transform:none;font-size:.72rem">Mensagem</label><div class="input-field"><textarea id="txt" class="textarea-control" maxlength="500"></textarea></div></div><div class="counter" id="counter">0 / 500</div></div>
+          <div><div class="input-wrapper is-filled"><label class="input-label" style="top:16px;transform:none;font-size:.72rem">Preço</label><div class="input-field"><span>R$</span><input class="input-control" type="number" value="125" /><span>/mês</span></div></div></div>
+        </div>
+      </section>
+      <section class="card">
+        <h2>3) Feedback Components</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button data-toast="success">Toast Success</button><button data-toast="error">Toast Error</button><button data-toast="info">Toast Info</button><button data-toast="warning">Toast Warning</button></div>
+        <div class="grid" style="margin-top:12px"><div class="skeleton"><div class="sk" style="width:55%"></div><div class="sk"></div><div class="sk" style="width:72%"></div></div><button data-tooltip="Tooltip profissional com delay de 400ms" id="tipBtn">Passe o mouse no tooltip</button></div>
+      </section>
+      <section class="card">
+        <h2>4) Resultado de cálculo</h2>
+        <button id="calcBtn">Calcular</button>
+        <div class="result" id="resultCard"><div>Linha 1</div><div class="value" id="resultValue">0</div><div>Linha 2</div></div>
+      </section>
+      <section class="card">
+        <h2>5) Token Reference</h2>
+        <table><thead><tr><th>Token</th><th>Valor atual</th></tr></thead><tbody id="tokenTable"></tbody></table>
+      </section>
+    </main>
+    <div class="toasts" id="toasts"></div>
+    <script>
+      const root = document.documentElement;
+      const pref = localStorage.getItem('theme');
+      const system = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.dataset.theme = pref || system || 'light';
+      const themeToggle = document.getElementById('themeToggle');
+      const thumb = themeToggle.querySelector('.theme-thumb');
+      const syncTheme = () => {
+        const dark = root.dataset.theme === 'dark';
+        themeToggle.setAttribute('aria-pressed', dark);
+        thumb.textContent = dark ? '🌙' : '☀️';
+        localStorage.setItem('theme', root.dataset.theme);
+        renderTokens();
+      };
+      themeToggle.onclick = () => { root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark'; syncTheme(); };
+      syncTheme();
+
+      const wrap = document.getElementById('nameWrap');
+      const input = document.getElementById('nameInput');
+      const hint = wrap.querySelector('.hint');
+      input.addEventListener('input', () => wrap.classList.toggle('is-filled', !!input.value.trim()));
+      input.addEventListener('blur', () => {
+        if (!input.value.trim()) {
+          wrap.className = 'input-wrapper is-error';
+          hint.textContent = 'Conte para nós como devemos te chamar.';
+        } else if (input.value.trim().length > 2) {
+          wrap.className = 'input-wrapper is-filled is-success';
+          hint.textContent = 'Perfeito, seu nome parece ótimo.';
+          hint.style.color = 'var(--accent-success)';
+        }
+      });
+      document.querySelectorAll('[data-state]').forEach((btn) => btn.addEventListener('click', () => {
+        wrap.className = `input-wrapper is-filled is-${btn.dataset.state}`;
+        hint.style.color = btn.dataset.state === 'error' ? 'var(--accent-error)' : 'var(--text-tertiary)';
+        hint.textContent = btn.dataset.state === 'error' ? 'Nome precisa ter no mínimo 3 caracteres.' : `Estado ${btn.dataset.state} aplicado.`;
+      }));
+
+      const select = document.getElementById('customSelect');
+      select.querySelector('.select-trigger').onclick = () => select.classList.toggle('open');
+      select.querySelectorAll('.option').forEach((opt) => opt.onclick = () => { select.querySelector('.select-trigger').childNodes[0].textContent = opt.textContent + ' '; select.classList.remove('open'); });
+
+      const range = document.getElementById('range');
+      const rangeTip = document.getElementById('rangeTip');
+      const syncRange = () => { range.style.setProperty('--fill', range.value + '%'); rangeTip.style.left = range.value + '%'; rangeTip.textContent = range.value + '%'; };
+      range.oninput = syncRange; syncRange();
+
+      const sw = document.getElementById('miniSwitch');
+      sw.onclick = () => sw.setAttribute('aria-checked', String(sw.getAttribute('aria-checked') !== 'true'));
+
+      const txt = document.getElementById('txt');
+      const counter = document.getElementById('counter');
+      txt.addEventListener('input', () => {
+        txt.style.height = 'auto'; txt.style.height = txt.scrollHeight + 'px';
+        const l = txt.value.length; counter.textContent = `${l} / 500`;
+        counter.className = 'counter' + (l > 420 ? ' danger' : l > 360 ? ' warn' : '');
+      });
+
+      const toasts = document.getElementById('toasts');
+      document.querySelectorAll('[data-toast]').forEach((btn) => btn.onclick = () => {
+        const type = btn.dataset.toast; const toast = document.createElement('div'); toast.className = 'toast';
+        toast.style.borderLeftColor = `var(--accent-${type === 'info' ? 'primary' : type})`;
+        toast.innerHTML = `<strong>${type.toUpperCase()}</strong><div>Notificação ${type} enviada com animação.</div><div class='progress'></div>`;
+        toasts.prepend(toast);
+        setTimeout(() => toast.classList.add('exit'), 3800);
+        setTimeout(() => toast.remove(), 4200);
+      });
+
+      const tipBtn = document.getElementById('tipBtn');
+      let tipTimer;
+      tipBtn.addEventListener('mouseenter', () => {
+        tipTimer = setTimeout(() => {
+          const tip = document.createElement('div'); tip.className = 'tooltip show'; tip.textContent = tipBtn.dataset.tooltip;
+          document.body.appendChild(tip);
+          const rect = tipBtn.getBoundingClientRect(); const top = rect.top > 80 ? rect.top - tip.offsetHeight - 8 : rect.bottom + 8;
+          tip.style.left = Math.min(window.innerWidth - 240, rect.left) + 'px'; tip.style.top = top + 'px'; tipBtn._tip = tip;
+        }, 400);
+      });
+      tipBtn.addEventListener('mouseleave', () => { clearTimeout(tipTimer); tipBtn._tip?.remove(); });
+
+      const calcBtn = document.getElementById('calcBtn'); const resultCard = document.getElementById('resultCard'); const resultValue = document.getElementById('resultValue');
+      calcBtn.onclick = () => {
+        resultCard.classList.add('show');
+        const target = 4832; const start = performance.now();
+        const tick = (now) => {
+          const p = Math.min((now - start) / 600, 1);
+          resultValue.textContent = Math.round(target * p).toLocaleString('pt-BR');
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+
+      const tokenList = ['surface-base','surface-raised','surface-overlay','surface-sunken','text-primary','text-secondary','text-tertiary','border-default','border-strong','accent-primary','accent-success','accent-error','accent-warning'];
+      function renderTokens(){
+        const styles = getComputedStyle(root); document.getElementById('tokenTable').innerHTML = tokenList.map((t)=>`<tr><td>--${t}</td><td><span class='swatch' style='background:${styles.getPropertyValue('--'+t)}'></span>${styles.getPropertyValue('--'+t)}</td></tr>`).join('');
+      }
+      renderTokens();
+    </script>
+  </body>
+</html>
