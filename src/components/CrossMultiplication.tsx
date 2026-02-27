@@ -83,7 +83,7 @@ export const CrossMultiplication: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white shadow-lg rounded-lg p-4">
+      <div className="result-card">
         <h3 className="text-lg font-medium text-gray-800 mb-2">Resultado</h3>
         <p className="text-2xl font-bold text-gray-900">
           {result !== null ? result : "-"}

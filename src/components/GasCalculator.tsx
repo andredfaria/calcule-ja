@@ -69,7 +69,7 @@ export const GasCalculator: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-gray-50 p-6 rounded-lg">
+        <div className="result-card">
           <h3 className="text-lg font-medium mb-4">Resultado</h3>
 
           <div className="space-y-4">

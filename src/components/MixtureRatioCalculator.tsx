@@ -88,7 +88,7 @@ export const MixtureRatioCalculator: React.FC = () => {
         </button>
       </div>
 
-      <div className="bg-white shadow-lg rounded-lg p-4 space-y-3">
+      <div className="result-card space-y-3">
         <h3 className="text-lg font-medium text-gray-800">Resultado</h3>
         {result ? (
           <>

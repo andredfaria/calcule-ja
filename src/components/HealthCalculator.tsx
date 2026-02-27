@@ -132,7 +132,7 @@ export const HealthCalculator: React.FC = () => {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white shadow-lg rounded-lg p-6">
+          <div className="result-card">
             <h3 className="text-lg font-medium text-gray-800 mb-4">
               Resultados
             </h3>

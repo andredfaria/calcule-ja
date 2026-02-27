@@ -7,31 +7,31 @@ import { BillSplitter } from './components/BillSplitter';
 import { GasCalculator } from './components/GasCalculator';
 import { FuelCalculator } from './components/FuelCalculator';
 import { CrossMultiplication } from './components/CrossMultiplication';
-import { PercentageCalculator } from "./components/PercentageCalculator";
+import { PercentageCalculator } from './components/PercentageCalculator';
 import { MixtureRatioCalculator } from './components/MixtureRatioCalculator';
 
 function App() {
-  const [activeTab, setActiveTab] = useState("cross-multiplication");
+  const [activeTab, setActiveTab] = useState('cross-multiplication');
 
   const renderContent = () => {
     switch (activeTab) {
-      case "health":
+      case 'health':
         return <HealthCalculator />;
-      case "cross-multiplication":
+      case 'cross-multiplication':
         return <CrossMultiplication />;
-      case "percentage":
+      case 'percentage':
         return <PercentageCalculator />;
-      case "proporcao":
+      case 'proporcao':
         return <MixtureRatioCalculator />;
-      case "finance":
+      case 'finance':
         return <FinanceCalculator />;
-      case "datetime":
+      case 'datetime':
         return <DateTimeConverter />;
-      case "split":
+      case 'split':
         return <BillSplitter />;
-      case "gas":
+      case 'gas':
         return <GasCalculator />;
-      case "fuel":
+      case 'fuel':
         return <FuelCalculator />;
       default:
         return null;
@@ -40,7 +40,9 @@ function App() {
 
   return (
     <Layout activeTab={activeTab} setActiveTab={setActiveTab}>
-      {renderContent()}
+      <section key={activeTab} className="calc-stage">
+        {renderContent()}
+      </section>
     </Layout>
   );
 }
