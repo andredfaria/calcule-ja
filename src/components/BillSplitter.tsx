@@ -10,7 +10,7 @@ export const BillSplitter: React.FC = () => {
   const [people, setPeople] = useState<Person[]>([
     { id: 1, name: '', items: [] }
   ]);
-  const [tip, setTip] = useState('');
+  const [tip, setTip] = useState('10');
 
   const addPerson = () => {
     setPeople([...people, { id: Date.now(), name: '', items: [] }]);
@@ -163,7 +163,7 @@ export const BillSplitter: React.FC = () => {
 
             <div className="text-right">
               <p className="text-sm text-gray-600">
-                Total (com gorjeta): R${" "}
+                Total (com taxa): R${" "}
                 {calculatePersonTotal(person.id).toFixed(2)}
               </p>
             </div>
@@ -174,7 +174,7 @@ export const BillSplitter: React.FC = () => {
       <div className="result-card">
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
-            Gorjeta (%)
+            Taxa de serviço (%)
           </label>
           <input
             type="number"
@@ -190,7 +190,7 @@ export const BillSplitter: React.FC = () => {
             <span>R$ {totals.subtotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">Gorjeta:</span>
+            <span className="text-gray-600">Taxa de serviço:</span>
             <span>R$ {totals.tipAmount.toFixed(2)}</span>
           </div>
           <div className="flex justify-between font-bold">

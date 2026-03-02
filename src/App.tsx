@@ -9,6 +9,9 @@ import { FuelCalculator } from './components/FuelCalculator';
 import { CrossMultiplication } from './components/CrossMultiplication';
 import { PercentageCalculator } from './components/PercentageCalculator';
 import { MixtureRatioCalculator } from './components/MixtureRatioCalculator';
+import { UnitConverter } from './components/UnitConverter';
+import { CurrencyDepreciationCalculator } from './components/CurrencyDepreciationCalculator';
+import { CDICalculator } from './components/CDICalculator';
 
 function App() {
   const [activeTab, setActiveTab] = useState('cross-multiplication');
@@ -33,6 +36,12 @@ function App() {
         return <GasCalculator />;
       case 'fuel':
         return <FuelCalculator />;
+      case 'units':
+        return <UnitConverter />;
+      case 'devaluation':
+        return <CurrencyDepreciationCalculator />;
+      case 'cdi':
+        return <CDICalculator />;
       default:
         return null;
     }
