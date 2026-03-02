@@ -10,6 +10,9 @@ import {
   Wallet,
   Moon,
   Sun,
+  Ruler,
+  TrendingDown,
+  Landmark,
 } from 'lucide-react';
 import React from 'react';
 import Footer from './Footer';
@@ -30,6 +33,9 @@ const navItems: NavItem[] = [
   { id: 'finance', label: 'Parcelamento', icon: <Wallet className="w-4 h-4" /> },
   { id: 'split', label: 'Divisão de contas', icon: <Receipt className="w-4 h-4" /> },
   { id: 'datetime', label: 'Fuso horário', icon: <Calendar className="w-4 h-4" /> },
+  { id: 'units', label: 'Unidades', icon: <Ruler className="w-4 h-4" /> },
+  { id: 'devaluation', label: 'Desvalorização', icon: <TrendingDown className="w-4 h-4" /> },
+  { id: 'cdi', label: 'CDI', icon: <Landmark className="w-4 h-4" /> },
 ];
 
 interface LayoutProps {
