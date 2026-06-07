@@ -44,6 +44,8 @@ function resumir(cronograma: LinhaCronograma[]): SistemaResult {
 }
 
 function calcularPrice(pv: number, i: number, n: number): SistemaResult {
+  // Guarda defensiva: taxa 0% (i === 0) zeraria o denominador da fórmula Price.
+  // Inalcançável pela validação atual (taxaJurosAnual > 0), mantida caso a validação mude.
   const parcela = i === 0 ? pv / n : (pv * i) / (1 - (1 + i) ** -n);
   const cronograma: LinhaCronograma[] = [];
   let saldo = pv;

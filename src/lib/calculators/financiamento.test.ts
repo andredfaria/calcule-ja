@@ -36,4 +36,10 @@ describe("calcularFinanciamento", () => {
     expect(() => calcularFinanciamento({ valorFinanciado: 0, taxaJurosAnual: 12, prazoMeses: 12 })).toThrow(RangeError);
     expect(() => calcularFinanciamento({ valorFinanciado: 1000, taxaJurosAnual: 12, prazoMeses: 12.5 })).toThrow(RangeError);
   });
+
+  it("totalPago = principal + totalJuros (ambos sistemas)", () => {
+    const { price, sac } = calcularFinanciamento(base);
+    expect(price.totalPago).toBeCloseTo(100000 + price.totalJuros, 4);
+    expect(sac.totalPago).toBeCloseTo(100000 + sac.totalJuros, 4);
+  });
 });
