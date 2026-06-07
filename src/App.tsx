@@ -10,6 +10,7 @@ import { CrossMultiplication } from './components/CrossMultiplication';
 import { PercentageCalculator } from "./components/PercentageCalculator";
 import { MixtureRatioCalculator } from './components/MixtureRatioCalculator';
 import { CdiCalculator } from './components/CdiCalculator';
+import { FinanciamentoCalculator } from './components/FinanciamentoCalculator';
 
 function App() {
   const [activeTab, setActiveTab] = useState("cross-multiplication");
@@ -24,6 +25,8 @@ function App() {
         return <PercentageCalculator />;
       case "cdi":
         return <CdiCalculator />;
+      case "financiamento":
+        return <FinanciamentoCalculator />;
       case "proporcao":
         return <MixtureRatioCalculator />;
       case "finance":

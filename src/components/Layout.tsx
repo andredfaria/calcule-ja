@@ -6,6 +6,7 @@ import {
   TrafficCone,
   Percent,
   TrendingUp,
+  Landmark,
 } from "lucide-react";
 import React from 'react';
 import Footer from './Footer';
@@ -64,6 +65,12 @@ export const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, childre
               text="CDI"
               active={activeTab === "cdi"}
               onClick={() => setActiveTab("cdi")}
+            />
+            <NavItem
+              icon={<Landmark className="w-5 h-5" />}
+              text="Financiamento"
+              active={activeTab === "financiamento"}
+              onClick={() => setActiveTab("financiamento")}
             />
             {/*
             <NavItem
