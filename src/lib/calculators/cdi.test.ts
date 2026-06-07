@@ -18,6 +18,7 @@ describe("calcularCdi", () => {
     expect(r.valorIOF).toBe(0); // >= 30 dias
     expect(r.rendimentoLiquido).toBeCloseTo(952.875, 2);
     expect(r.montanteLiquido).toBeCloseTo(10952.875, 2);
+    expect(r.rentabilidadeLiquidaPercentual).toBeCloseTo(9.52875, 4);
   });
 
   it.each([
@@ -39,6 +40,10 @@ describe("calcularCdi", () => {
     expect(dia29.valorIOF).toBeGreaterThan(0);
     expect(dia30.aliquotaIOF).toBe(0);
     expect(dia30.valorIOF).toBe(0);
+    expect(dia29.valorIR).toBeCloseTo(
+      (dia29.rendimentoBruto - dia29.valorIOF) * dia29.aliquotaIR,
+      5,
+    );
   });
 
   it("lança RangeError para entradas inválidas", () => {
