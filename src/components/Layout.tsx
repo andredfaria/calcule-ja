@@ -7,6 +7,7 @@ import {
   Percent,
   TrendingUp,
   Landmark,
+  Car,
 } from "lucide-react";
 import React from 'react';
 import Footer from './Footer';
@@ -108,6 +109,12 @@ export const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, childre
               text="Calculo de Viagem"
               active={activeTab === "gas"}
               onClick={() => setActiveTab("gas")}
+            />
+            <NavItem
+              icon={<Car className="w-5 h-5" />}
+              text="Motorista de App"
+              active={activeTab === "motorista"}
+              onClick={() => setActiveTab("motorista")}
             />
             <NavItem
               icon={<Calendar className="w-5 h-5" />}
