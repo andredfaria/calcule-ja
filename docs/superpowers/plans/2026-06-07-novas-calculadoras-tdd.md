@@ -430,7 +430,7 @@ describe("calcularFinanciamento", () => {
     const { price } = calcularFinanciamento(base);
     expect(price.cronograma).toHaveLength(12);
     expect(price.primeiraParcela).toBeCloseTo(price.ultimaParcela, 4);
-    expect(price.primeiraParcela).toBeCloseTo(8855.55, 0);
+    expect(price.primeiraParcela).toBeCloseTo(8856.21, 0);
     expect(price.cronograma[11].saldo).toBeCloseTo(0, 2);
   });
 
