@@ -1,8 +1,5 @@
 import React from "react";
 
-export const moeda = (v: number) =>
-  v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-
 interface CampoProps {
   label: string;
   value: string;

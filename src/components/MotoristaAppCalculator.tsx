@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { calcularMotorista } from "../lib/calculators/motoristaApp";
-import { Campo, Linha, moeda } from "./calculadora/campos";
+import { Campo, Linha } from "./calculadora/campos";
+import { moeda } from "./calculadora/formatters";
 
 export const MotoristaAppCalculator: React.FC = () => {
   const [ganhoBruto, setGanhoBruto] = useState("");
@@ -42,7 +43,7 @@ export const MotoristaAppCalculator: React.FC = () => {
           <h3 className="text-lg font-medium">Resultado</h3>
           <Linha rotulo="Litros consumidos" valor={result ? `${result.litrosConsumidos.toFixed(2)} L` : "-"} />
           <Linha rotulo="Custo de combustível" valor={result ? moeda(result.custoCombustivel) : "-"} />
-          <Linha rotulo="Custo por km" valor={result ? moeda(result.custoPorKm) : "-"} />
+          <Linha rotulo="Custo de combustível por km" valor={result ? moeda(result.custoPorKm) : "-"} />
           <Linha rotulo="Ganho líquido" valor={result ? moeda(result.ganhoLiquido) : "-"} destaque />
           <Linha rotulo="Ganho líquido por km" valor={result ? moeda(result.ganhoLiquidoPorKm) : "-"} destaque />
           <Linha rotulo="Margem líquida" valor={result ? `${result.margemLiquidaPercentual.toFixed(1)}%` : "-"} />

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { calcularFinanciamento, SistemaResult } from "../lib/calculators/financiamento";
-import { Campo, Linha, moeda } from "./calculadora/campos";
+import { Campo, Linha } from "./calculadora/campos";
+import { moeda } from "./calculadora/formatters";
 
 const ResumoSistema: React.FC<{ titulo: string; sistema: SistemaResult | null }> = ({ titulo, sistema }) => (
   <div className="bg-gray-50 p-4 rounded-lg space-y-3">

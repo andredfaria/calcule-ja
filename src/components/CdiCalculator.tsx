@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { calcularCdi } from "../lib/calculators/cdi";
-import { Campo, Linha, moeda } from "./calculadora/campos";
+import { Campo, Linha } from "./calculadora/campos";
+import { moeda } from "./calculadora/formatters";
 
 export const CdiCalculator: React.FC = () => {
   const [valorInicial, setValorInicial] = useState("");
