@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout } from './components/Layout';
 import { HealthCalculator } from './components/HealthCalculator';
 import { FinanceCalculator } from './components/FinanceCalculator';
@@ -12,9 +12,24 @@ import { MixtureRatioCalculator } from './components/MixtureRatioCalculator';
 import { CdiCalculator } from './components/CdiCalculator';
 import { FinanciamentoCalculator } from './components/FinanciamentoCalculator';
 import { MotoristaAppCalculator } from './components/MotoristaAppCalculator';
+import { parseParams } from './lib/url/params';
 
 function App() {
   const [activeTab, setActiveTab] = useState('cross-multiplication');
+
+  // On first load, open the calculator named in the URL (?calc=...).
+  useEffect(() => {
+    const { calcId } = parseParams(window.location.search);
+    if (calcId) setActiveTab(calcId);
+  }, []);
+
+  // When the user switches tabs, reset the URL to just the calc id.
+  useEffect(() => {
+    const { calcId } = parseParams(window.location.search);
+    if (calcId !== activeTab) {
+      window.history.replaceState(null, '', `${window.location.pathname}?calc=${activeTab}`);
+    }
+  }, [activeTab]);
 
   const renderContent = () => {
     switch (activeTab) {
