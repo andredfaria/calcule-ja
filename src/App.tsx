@@ -15,15 +15,12 @@ import { MotoristaAppCalculator } from './components/MotoristaAppCalculator';
 import { parseParams } from './lib/url/params';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('cross-multiplication');
-
-  // On first load, open the calculator named in the URL (?calc=...).
-  useEffect(() => {
+  const [activeTab, setActiveTab] = useState(() => {
     const { calcId } = parseParams(window.location.search);
-    if (calcId) setActiveTab(calcId);
-  }, []);
+    return calcId ?? 'cross-multiplication';
+  });
 
-  // When the user switches tabs, reset the URL to just the calc id.
+  // When the user switches tabs, reflect it in the URL (replaceState — no history pollution).
   useEffect(() => {
     const { calcId } = parseParams(window.location.search);
     if (calcId !== activeTab) {
