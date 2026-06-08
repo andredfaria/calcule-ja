@@ -43,5 +43,7 @@ describe("calcularMotorista", () => {
     expect(() => calcularMotorista({ ganhoBruto: 300, kmRodados: 0, consumoKmPorLitro: 10, precoCombustivel: 5.5 })).toThrow(RangeError);
     expect(() => calcularMotorista({ ganhoBruto: 300, kmRodados: 200, consumoKmPorLitro: 0, precoCombustivel: 5.5 })).toThrow(RangeError);
     expect(() => calcularMotorista({ ganhoBruto: 300, kmRodados: 200, consumoKmPorLitro: 10, precoCombustivel: 5.5, outrosCustos: -1 })).toThrow(RangeError);
+    expect(() => calcularMotorista({ ganhoBruto: 0, kmRodados: 200, consumoKmPorLitro: 10, precoCombustivel: 5.5 })).toThrow(RangeError);
+    expect(() => calcularMotorista({ ganhoBruto: 300, kmRodados: 200, consumoKmPorLitro: 10, precoCombustivel: 0 })).toThrow(RangeError);
   });
 });
