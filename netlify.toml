@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Vitest 4 pulls in rolldown, which uses node:util's styleText (Node >= 20.12).
+# Netlify defaults to Node 18, so pin a modern LTS to fix the production build.
+[build.environment]
+  NODE_VERSION = "22"
