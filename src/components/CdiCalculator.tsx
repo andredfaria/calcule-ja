@@ -2,12 +2,26 @@ import React, { useState } from "react";
 import { calcularCdi } from "../lib/calculators/cdi";
 import { Campo, Linha } from "./calculadora/campos";
 import { moeda } from "./calculadora/formatters";
+import { useUrlState } from "../lib/url/useUrlState";
+import { ExportBar } from "./calculadora/ExportBar";
+import { resumoCdi } from "../lib/calculators/resumos";
 
 export const CdiCalculator: React.FC = () => {
   const [valorInicial, setValorInicial] = useState("");
   const [percentualCDI, setPercentualCDI] = useState("");
   const [taxaCDIAnual, setTaxaCDIAnual] = useState("");
   const [prazoDias, setPrazoDias] = useState("");
+
+  useUrlState(
+    "cdi",
+    { valorInicial, percentualCDI, taxaCDIAnual, prazoDias },
+    (i) => {
+      if (i.valorInicial !== undefined) setValorInicial(i.valorInicial);
+      if (i.percentualCDI !== undefined) setPercentualCDI(i.percentualCDI);
+      if (i.taxaCDIAnual !== undefined) setTaxaCDIAnual(i.taxaCDIAnual);
+      if (i.prazoDias !== undefined) setPrazoDias(i.prazoDias);
+    },
+  );
 
   const calcular = () => {
     const v = Number(valorInicial);
@@ -41,6 +55,22 @@ export const CdiCalculator: React.FC = () => {
           <Linha rotulo="IOF" valor={result ? moeda(result.valorIOF) : "-"} />
           <Linha rotulo="Rendimento líquido" valor={result ? moeda(result.rendimentoLiquido) : "-"} destaque />
           <Linha rotulo="Montante líquido" valor={result ? moeda(result.montanteLiquido) : "-"} destaque />
+          <ExportBar
+            enabled={result !== null}
+            resumoTexto={() =>
+              result
+                ? resumoCdi(
+                    {
+                      valorInicial: Number(valorInicial),
+                      percentualCDI: Number(percentualCDI),
+                      taxaCDIAnual: Number(taxaCDIAnual),
+                      prazoDias: Number(prazoDias),
+                    },
+                    result,
+                  )
+                : ""
+            }
+          />
         </div>
       </div>
     </div>
