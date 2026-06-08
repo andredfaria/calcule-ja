@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { calcularMotorista } from "../lib/calculators/motoristaApp";
 import { Campo, Linha } from "./calculadora/campos";
 import { moeda } from "./calculadora/formatters";
+import { useUrlState } from "../lib/url/useUrlState";
+import { ExportBar } from "./calculadora/ExportBar";
+import { resumoMotorista } from "../lib/calculators/resumos";
 
 export const MotoristaAppCalculator: React.FC = () => {
   const [ganhoBruto, setGanhoBruto] = useState("");
@@ -9,6 +12,18 @@ export const MotoristaAppCalculator: React.FC = () => {
   const [consumo, setConsumo] = useState("");
   const [preco, setPreco] = useState("");
   const [outros, setOutros] = useState("");
+
+  useUrlState(
+    "motorista",
+    { ganhoBruto, kmRodados, consumo, preco, outros },
+    (i) => {
+      if (i.ganhoBruto !== undefined) setGanhoBruto(i.ganhoBruto);
+      if (i.kmRodados !== undefined) setKmRodados(i.kmRodados);
+      if (i.consumo !== undefined) setConsumo(i.consumo);
+      if (i.preco !== undefined) setPreco(i.preco);
+      if (i.outros !== undefined) setOutros(i.outros);
+    },
+  );
 
   const calcular = () => {
     const g = Number(ganhoBruto);
@@ -47,6 +62,23 @@ export const MotoristaAppCalculator: React.FC = () => {
           <Linha rotulo="Ganho líquido" valor={result ? moeda(result.ganhoLiquido) : "-"} destaque />
           <Linha rotulo="Ganho líquido por km" valor={result ? moeda(result.ganhoLiquidoPorKm) : "-"} destaque />
           <Linha rotulo="Margem líquida" valor={result ? `${result.margemLiquidaPercentual.toFixed(1)}%` : "-"} />
+          <ExportBar
+            enabled={result !== null}
+            resumoTexto={() =>
+              result
+                ? resumoMotorista(
+                    {
+                      ganhoBruto: Number(ganhoBruto),
+                      kmRodados: Number(kmRodados),
+                      consumoKmPorLitro: Number(consumo),
+                      precoCombustivel: Number(preco),
+                      outrosCustos: outros === "" ? 0 : Number(outros),
+                    },
+                    result,
+                  )
+                : ""
+            }
+          />
         </div>
       </div>
     </div>

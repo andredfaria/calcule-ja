@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { calcularFinanciamento, SistemaResult } from "../lib/calculators/financiamento";
 import { Campo, Linha } from "./calculadora/campos";
 import { moeda } from "./calculadora/formatters";
+import { useUrlState } from "../lib/url/useUrlState";
+import { ExportBar } from "./calculadora/ExportBar";
+import { resumoFinanciamento } from "../lib/calculators/resumos";
 
 const ResumoSistema: React.FC<{ titulo: string; sistema: SistemaResult | null }> = ({ titulo, sistema }) => (
   <div className="bg-gray-50 p-4 rounded-lg space-y-3">
@@ -17,6 +20,16 @@ export const FinanciamentoCalculator: React.FC = () => {
   const [valor, setValor] = useState("");
   const [taxa, setTaxa] = useState("");
   const [prazo, setPrazo] = useState("");
+
+  useUrlState(
+    "financiamento",
+    { valor, taxa, prazo },
+    (i) => {
+      if (i.valor !== undefined) setValor(i.valor);
+      if (i.taxa !== undefined) setTaxa(i.taxa);
+      if (i.prazo !== undefined) setPrazo(i.prazo);
+    },
+  );
 
   const calcular = () => {
     const v = Number(valor);
@@ -72,6 +85,22 @@ export const FinanciamentoCalculator: React.FC = () => {
           </table>
         </div>
       )}
+
+      <ExportBar
+        enabled={result !== null}
+        resumoTexto={() =>
+          result
+            ? resumoFinanciamento(
+                {
+                  valorFinanciado: Number(valor),
+                  taxaJurosAnual: Number(taxa),
+                  prazoMeses: Number(prazo),
+                },
+                result,
+              )
+            : ""
+        }
+      />
     </div>
   );
 };
