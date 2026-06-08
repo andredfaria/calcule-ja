@@ -10,6 +10,9 @@ import {
   Wallet,
   Moon,
   Sun,
+  TrendingUp,
+  Landmark,
+  Car,
 } from 'lucide-react';
 import React from 'react';
 import Footer from './Footer';
@@ -27,7 +30,10 @@ const navItems: NavItem[] = [
   { id: 'health', label: 'IMC', icon: <Gauge className="w-4 h-4" /> },
   { id: 'fuel', label: 'Álcool x Gasolina', icon: <Fuel className="w-4 h-4" /> },
   { id: 'gas', label: 'Viagem', icon: <TrafficCone className="w-4 h-4" /> },
+  { id: 'motorista', label: 'Motorista de App', icon: <Car className="w-4 h-4" /> },
   { id: 'finance', label: 'Parcelamento', icon: <Wallet className="w-4 h-4" /> },
+  { id: 'cdi', label: 'CDI', icon: <TrendingUp className="w-4 h-4" /> },
+  { id: 'financiamento', label: 'Financiamento', icon: <Landmark className="w-4 h-4" /> },
   { id: 'split', label: 'Divisão de contas', icon: <Receipt className="w-4 h-4" /> },
   { id: 'datetime', label: 'Fuso horário', icon: <Calendar className="w-4 h-4" /> },
 ];
