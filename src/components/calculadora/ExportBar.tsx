@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface ExportBarProps {
   /** Returns the plain-text summary to copy. Called only when enabled. */
@@ -9,10 +9,19 @@ interface ExportBarProps {
 
 export const ExportBar: React.FC<ExportBarProps> = ({ resumoTexto, enabled }) => {
   const [feedback, setFeedback] = useState("");
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(
+    () => () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    },
+    [],
+  );
 
   const flash = (msg: string) => {
+    if (timerRef.current) clearTimeout(timerRef.current);
     setFeedback(msg);
-    setTimeout(() => setFeedback(""), 2000);
+    timerRef.current = setTimeout(() => setFeedback(""), 2000);
   };
 
   const copiarTexto = async () => {
