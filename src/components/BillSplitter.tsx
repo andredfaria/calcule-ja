@@ -101,7 +101,7 @@ export const BillSplitter: React.FC = () => {
               {people.length > 1 && (
                 <button
                   onClick={() => removePerson(person.id)}
-                  className="m-1 px-4 py-2 text-white rounded-md bg-red-500 hover:bg-red-700"
+                  className="m-1 px-4 py-2 text-white rounded-md bg-danger hover:opacity-90"
                 >
                   Remover
                 </button>
@@ -124,7 +124,7 @@ export const BillSplitter: React.FC = () => {
                           e.target.value
                         )
                       }
-                      className="flex-1 mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+                      className="flex-1 mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
                     />
                   </div>
                   <div>
@@ -140,13 +140,13 @@ export const BillSplitter: React.FC = () => {
                           Number(e.target.value)
                         )
                       }
-                      className="w-32 mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+                      className="w-32 mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
                     />
                   </div>
                   <div>
                     <button
                       onClick={() => removeItem(person.id, index)}
-                      className="mt-1 px-4 py-2 text-white rounded-md bg-red-500 hover:bg-red-700"
+                      className="mt-1 px-4 py-2 text-white rounded-md bg-danger hover:opacity-90"
                     >
                       Remover
                     </button>
