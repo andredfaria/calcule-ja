@@ -7,7 +7,7 @@ import { ExportBar } from "./calculadora/ExportBar";
 import { resumoFinanciamento } from "../lib/calculators/resumos";
 
 const ResumoSistema: React.FC<{ titulo: string; sistema: SistemaResult | null }> = ({ titulo, sistema }) => (
-  <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+  <div className="bg-surface-sunken border border-line rounded-card p-4 space-y-3">
     <h4 className="font-semibold">{titulo}</h4>
     <Linha rotulo="1ª parcela" valor={sistema ? moeda(sistema.primeiraParcela) : "-"} />
     <Linha rotulo="Última parcela" valor={sistema ? moeda(sistema.ultimaParcela) : "-"} />
@@ -56,15 +56,15 @@ export const FinanciamentoCalculator: React.FC = () => {
       </div>
 
       {result && (
-        <p className="text-sm text-gray-700">
+        <p className="text-sm text-fg-muted">
           O SAC paga {moeda(result.diferencaTotalJuros)} a menos de juros que o Price.
         </p>
       )}
 
       {result && (
-        <div className="overflow-auto max-h-80 border rounded-lg">
+        <div className="overflow-auto max-h-80 border border-line rounded-card">
           <table className="w-full text-sm">
-            <thead className="bg-gray-100 sticky top-0">
+            <thead className="bg-surface-sunken sticky top-0">
               <tr>
                 <th className="px-3 py-2 text-left">Mês</th>
                 <th className="px-3 py-2 text-right">Parcela (Price)</th>
@@ -76,9 +76,9 @@ export const FinanciamentoCalculator: React.FC = () => {
               {result.price.cronograma.map((linha, idx) => (
                 <tr key={linha.mes} className="border-t">
                   <td className="px-3 py-2">{linha.mes}</td>
-                  <td className="px-3 py-2 text-right">{moeda(linha.parcela)}</td>
-                  <td className="px-3 py-2 text-right">{moeda(result.sac.cronograma[idx].parcela)}</td>
-                  <td className="px-3 py-2 text-right">{moeda(result.sac.cronograma[idx].saldo)}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{moeda(linha.parcela)}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{moeda(result.sac.cronograma[idx].parcela)}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{moeda(result.sac.cronograma[idx].saldo)}</td>
                 </tr>
               ))}
             </tbody>
