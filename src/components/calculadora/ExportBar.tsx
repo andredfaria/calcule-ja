@@ -43,7 +43,7 @@ export const ExportBar: React.FC<ExportBarProps> = ({ resumoTexto, enabled }) =>
   };
 
   const btn =
-    "text-sm px-3 py-1.5 rounded-lg border border-gray-300 transition hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed";
+    "text-sm px-3 py-1.5 rounded-[10px] border border-line text-fg-muted transition hover:bg-surface-sunken hover:text-fg disabled:opacity-50 disabled:cursor-not-allowed";
 
   return (
     <div className="flex flex-wrap items-center gap-2 mt-4">
@@ -54,7 +54,7 @@ export const ExportBar: React.FC<ExportBarProps> = ({ resumoTexto, enabled }) =>
         Compartilhar link
       </button>
       {feedback && (
-        <span className="text-sm text-green-600" role="status">
+        <span className="text-sm text-positive" role="status">
           {feedback}
         </span>
       )}

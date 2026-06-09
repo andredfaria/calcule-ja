@@ -14,7 +14,7 @@ export const Campo: React.FC<CampoProps> = ({ label, value, onChange, type = "nu
     .replace(/[^a-z0-9-]/g, "");
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700">
+      <label htmlFor={id} className="block text-sm font-medium text-fg-muted">
         {label}
       </label>
       <input
@@ -22,7 +22,7 @@ export const Campo: React.FC<CampoProps> = ({ label, value, onChange, type = "nu
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+        className="mt-1 block w-full rounded-[10px] border border-line bg-surface-sunken px-4 py-2 text-fg shadow-sm transition focus:border-brand focus:ring-2 focus:ring-brand/30 outline-none"
       />
     </div>
   );
@@ -36,7 +36,7 @@ interface LinhaProps {
 
 export const Linha: React.FC<LinhaProps> = ({ rotulo, valor, destaque }) => (
   <div>
-    <p className="text-sm text-gray-600">{rotulo}</p>
-    <p className={destaque ? "text-2xl font-bold" : "text-lg font-medium"}>{valor}</p>
+    <p className="text-sm text-fg-subtle">{rotulo}</p>
+    <p className={`${destaque ? "text-2xl font-bold" : "text-lg font-medium"} text-fg tabular-nums`}>{valor}</p>
   </div>
 );
