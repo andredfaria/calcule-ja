@@ -43,52 +43,52 @@ export const FinanceCalculator: React.FC = () => {
         <div className="space-y-4">
           {/** Campo de Valor */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Valor Total (R$)
             </label>
             <input
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
 
           {/** Campo Numero de Parcela */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Número de Parcelas
             </label>
             <input
               type="number"
               value={months}
               onChange={(e) => setMonths(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
 
           {/** Campo Taxa de Jurus */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Taxa de Juros (% ao ano)
             </label>
             <input
               type="number"
               value={interestRate}
               onChange={(e) => setInterestRate(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
 
           {/** Campo Tipo de Jurus */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Tipo de Juros
             </label>
             <select
               value={calculationType}
               onChange={(e) => setCalculationType(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             >
               <option value="simple">Juros Simples</option>
               <option value="compound">Juros Compostos</option>
@@ -101,22 +101,22 @@ export const FinanceCalculator: React.FC = () => {
 
           <div className="space-y-4">
             <div>
-              <p className="text-sm text-gray-600">Valor da Parcela:</p>
-              <p className="text-2xl font-bold">
+              <p className="text-sm text-fg-muted">Valor da Parcela:</p>
+              <p className="text-2xl font-bold text-brand tabular-nums">
                 {result ? `R$ ${result.installment.toFixed(2)}` : "-"}
               </p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-600">Total a Pagar:</p>
-              <p className="text-2xl font-bold">
+              <p className="text-sm text-fg-muted">Total a Pagar:</p>
+              <p className="text-2xl font-bold text-fg tabular-nums">
                 {result ? `R$ ${result.total.toFixed(2)}` : "-"}
               </p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-600">Total de Juros:</p>
-              <p className="text-2xl font-bold">
+              <p className="text-sm text-fg-muted">Total de Juros:</p>
+              <p className="text-2xl font-bold text-fg tabular-nums">
                 {result ? `R$ ${result.totalInterest.toFixed(2)}` : "-"}
               </p>
             </div>
