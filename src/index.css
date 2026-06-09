@@ -23,7 +23,7 @@
   --accent-primary: #2563eb;
   --accent-primary-dim: rgba(37, 99, 235, 0.10);
   --accent-soft: #eff4ff;
-  --accent-success: #059669;
+  --accent-success: #047857;
   --accent-error: #dc2626;
   --accent-warning: #b45309;
 
@@ -58,8 +58,8 @@
   --text-inverse: #0b1120;
 
   --border-subtle: #1f2937;
-  --border-default: #273244;
-  --border-strong: #334155;
+  --border-default: #475569;
+  --border-strong: #64748b;
   --border-accent: #3b82f6;
 
   --accent-primary: #3b82f6;
