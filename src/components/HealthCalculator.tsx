@@ -54,58 +54,58 @@ export const HealthCalculator: React.FC = () => {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold text-gray-800">
+          <h2 className="text-xl font-semibold text-fg">
             Calculadora de IMC e Calorias
           </h2>
 
           {/** Campo de Peso */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Peso (kg)
             </label>
             <input
               type="number"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
 
           {/** Campo de Altura */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Altura (cm)
             </label>
             <input
               type="number"
               value={height}
               onChange={(e) => setHeight(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
 
           {/** Campo de Idade */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Idade
             </label>
             <input
               type="number"
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
 
           {/** Campo de Gênero */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Gênero
             </label>
             <select
               value={gender}
               onChange={(e) => setGender(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             >
               <option value="male">Masculino</option>
               <option value="female">Feminino</option>
@@ -114,13 +114,13 @@ export const HealthCalculator: React.FC = () => {
 
           {/** Campo de Nível de Atividade */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Nível de Atividade
             </label>
             <select
               value={activityLevel}
               onChange={(e) => setActivityLevel(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             >
               <option value="sedentary">Sedentário</option>
               <option value="light">Levemente ativo</option>
@@ -133,27 +133,27 @@ export const HealthCalculator: React.FC = () => {
 
         <div className="space-y-6">
           <div className="result-card">
-            <h3 className="text-lg font-medium text-gray-800 mb-4">
+            <h3 className="text-lg font-medium text-fg mb-4">
               Resultados
             </h3>
 
             <div className="space-y-4">
               <div>
-                <p className="text-sm text-gray-600">Seu IMC é:</p>
-                <p className="text-2xl font-bold text-gray-900">{bmi || "-"}</p>
+                <p className="text-sm text-fg-muted">Seu IMC é:</p>
+                <p className="text-2xl font-bold text-fg tabular-nums">{bmi || "-"}</p>
                 <p className={`text-sm ${bmiCategory.color}`}>
                   {bmi ? bmiCategory.text : "-"}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-fg-muted">
                   Calorias diárias necessárias:
                 </p>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-bold text-fg tabular-nums">
                   {calories || "-"}
                 </p>
-                <p className="text-sm text-gray-500">kcal/dia</p>
+                <p className="text-sm text-fg-subtle">kcal/dia</p>
               </div>
             </div>
           </div>
