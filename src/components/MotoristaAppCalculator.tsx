@@ -5,6 +5,7 @@ import { moeda } from "./calculadora/formatters";
 import { useUrlState } from "../lib/url/useUrlState";
 import { ExportBar } from "./calculadora/ExportBar";
 import { resumoMotorista } from "../lib/calculators/resumos";
+import { ResultCard } from "./calculadora/ResultCard";
 
 export const MotoristaAppCalculator: React.FC = () => {
   const [ganhoBruto, setGanhoBruto] = useState("");
@@ -54,8 +55,7 @@ export const MotoristaAppCalculator: React.FC = () => {
           <Campo label="Preço do combustível (R$/l)" value={preco} onChange={setPreco} />
           <Campo label="Outros custos (R$, opcional)" value={outros} onChange={setOutros} />
         </div>
-        <div className="bg-gray-50 p-6 rounded-lg space-y-4">
-          <h3 className="text-lg font-medium">Resultado</h3>
+        <ResultCard>
           <Linha rotulo="Litros consumidos" valor={result ? `${result.litrosConsumidos.toFixed(2)} L` : "-"} />
           <Linha rotulo="Custo de combustível" valor={result ? moeda(result.custoCombustivel) : "-"} />
           <Linha rotulo="Custo de combustível por km" valor={result ? moeda(result.custoPorKm) : "-"} />
@@ -79,7 +79,7 @@ export const MotoristaAppCalculator: React.FC = () => {
                 : ""
             }
           />
-        </div>
+        </ResultCard>
       </div>
     </div>
   );
