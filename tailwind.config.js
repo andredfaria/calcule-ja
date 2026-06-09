@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -50,11 +53,24 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        surface: 'var(--surface-raised)',
+        'surface-sunken': 'var(--surface-sunken)',
+        'surface-base': 'var(--surface-base)',
+        fg: 'var(--text-primary)',
+        'fg-muted': 'var(--text-secondary)',
+        'fg-subtle': 'var(--text-tertiary)',
+        line: 'var(--border-default)',
+        'line-subtle': 'var(--border-subtle)',
+        brand: 'var(--accent-primary)',
+        'brand-soft': 'var(--accent-soft)',
+        positive: 'var(--accent-success)',
+        danger: 'var(--accent-error)',
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        card: '1.25rem',
       },
       keyframes: {
         "accordion-down": {
