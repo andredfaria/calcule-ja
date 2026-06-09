@@ -49,39 +49,39 @@ export const DateTimeConverter: React.FC = () => {
         <div className="space-y-4">
           {/** Campo de Data */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Data
             </label>
             <input
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
 
           {/** Campo de Hora */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Hora
             </label>
             <input
               type="time"
               value={selectedTime}
               onChange={(e) => setSelectedTime(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
 
           {/** Campo de Fuso Horigem */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Fuso Horário de Origem
             </label>
             <select
               value={selectedTimezone}
               onChange={(e) => setSelectedTimezone(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             >
               {TIMEZONES.map(({ value, label }) => (
                 <option key={value} value={value}>
@@ -98,8 +98,8 @@ export const DateTimeConverter: React.FC = () => {
           <div className="space-y-4">
             {conversions.map(({ zone, time }) => (
               <div key={zone} className="flex justify-between items-center">
-                <span className="text-gray-600">{zone}</span>
-                <span className="font-medium">{time}</span>
+                <span className="text-fg-muted">{zone}</span>
+                <span className="font-medium tabular-nums">{time}</span>
               </div>
             ))}
           </div>
