@@ -81,7 +81,7 @@ export const BillSplitter: React.FC = () => {
         <h2 className="text-xl font-semibold">Divisão de Contas</h2>
         <button
           onClick={addPerson}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          className="px-4 py-2 rounded-md"
         >
           Adicionar Pessoa
         </button>
@@ -96,7 +96,7 @@ export const BillSplitter: React.FC = () => {
                 placeholder="Nome da pessoa"
                 value={person.name}
                 onChange={(e) => updatePersonName(person.id, e.target.value)}
-                className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
               />
               {people.length > 1 && (
                 <button
@@ -155,14 +155,14 @@ export const BillSplitter: React.FC = () => {
               ))}
               <button
                 onClick={() => addItem(person.id)}
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                className="px-4 py-2 rounded-md"
               >
                 + Adicionar Item
               </button>
             </div>
 
             <div className="text-right">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-fg-muted tabular-nums">
                 Total (com gorjeta): R${" "}
                 {calculatePersonTotal(person.id).toFixed(2)}
               </p>
@@ -173,29 +173,29 @@ export const BillSplitter: React.FC = () => {
 
       <div className="result-card">
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-fg-muted">
             Gorjeta (%)
           </label>
           <input
             type="number"
             value={tip}
             onChange={(e) => setTip(e.target.value)}
-            className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
           />
         </div>
 
         <div className="space-y-2">
           <div className="flex justify-between">
-            <span className="text-gray-600">Subtotal:</span>
-            <span>R$ {totals.subtotal.toFixed(2)}</span>
+            <span className="text-fg-muted">Subtotal:</span>
+            <span className="tabular-nums">R$ {totals.subtotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">Gorjeta:</span>
-            <span>R$ {totals.tipAmount.toFixed(2)}</span>
+            <span className="text-fg-muted">Gorjeta:</span>
+            <span className="tabular-nums">R$ {totals.tipAmount.toFixed(2)}</span>
           </div>
           <div className="flex justify-between font-bold">
             <span>Total:</span>
-            <span>R$ {totals.total.toFixed(2)}</span>
+            <span className="text-brand tabular-nums">R$ {totals.total.toFixed(2)}</span>
           </div>
         </div>
       </div>
