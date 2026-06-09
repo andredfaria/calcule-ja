@@ -42,71 +42,71 @@ export const MixtureRatioCalculator: React.FC = () => {
     <div className="space-y-6 p-6">
       <div className="space-y-4">
         <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700 mb-1">
+          <label className="text-sm font-medium text-fg-muted mb-1">
             Volume Total (L)
           </label>
           <input
             type="number"
             value={totalVolume}
             onChange={(e) => setTotalVolume(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+            className="w-full p-2 border border-line bg-surface-sunken rounded-lg"
             placeholder="Digite o volume total (ex: 2)"
           />
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700 mb-1">
+          <label className="text-sm font-medium text-fg-muted mb-1">
             Parte 1 (ex: suco concentrado)
           </label>
           <input
             type="number"
             value={part1}
             onChange={(e) => setPart1(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+            className="w-full p-2 border border-line bg-surface-sunken rounded-lg"
             placeholder="Digite a quantidade da parte 1 (ex: 1)"
           />
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700 mb-1">
+          <label className="text-sm font-medium text-fg-muted mb-1">
             Parte 2 (ex: água)
           </label>
           <input
             type="number"
             value={part2}
             onChange={(e) => setPart2(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+            className="w-full p-2 border border-line bg-surface-sunken rounded-lg"
             placeholder="Digite a quantidade da parte 2 (ex: 3)"
           />
         </div>
 
         <button
           onClick={calculateProportions}
-          className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition font-medium"
+          className="w-full py-3 px-4 rounded-lg shadow-md transition font-medium"
         >
           Calcular
         </button>
       </div>
 
       <div className="result-card space-y-3">
-        <h3 className="text-lg font-medium text-gray-800">Resultado</h3>
+        <h3 className="text-lg font-medium text-fg">Resultado</h3>
         {result ? (
           <>
             <div className="flex justify-between items-center">
-              <span className="text-gray-600">Volume da Parte 1:</span>
-              <span className="text-2xl font-bold text-blue-600">
+              <span className="text-fg-muted">Volume da Parte 1:</span>
+              <span className="text-2xl font-bold text-brand tabular-nums">
                 {result.part1} L
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-gray-600">Volume da Parte 2:</span>
-              <span className="text-2xl font-bold text-blue-600">
+              <span className="text-fg-muted">Volume da Parte 2:</span>
+              <span className="text-2xl font-bold text-brand tabular-nums">
                 {result.part2} L
               </span>
             </div>
           </>
         ) : (
-          <p className="text-gray-500 text-center">
+          <p className="text-fg-subtle text-center">
             Preencha os valores e clique em calcular.
           </p>
         )}
