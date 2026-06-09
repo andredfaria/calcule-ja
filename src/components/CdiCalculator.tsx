@@ -5,6 +5,7 @@ import { moeda } from "./calculadora/formatters";
 import { useUrlState } from "../lib/url/useUrlState";
 import { ExportBar } from "./calculadora/ExportBar";
 import { resumoCdi } from "../lib/calculators/resumos";
+import { ResultCard } from "./calculadora/ResultCard";
 
 export const CdiCalculator: React.FC = () => {
   const [valorInicial, setValorInicial] = useState("");
@@ -44,8 +45,7 @@ export const CdiCalculator: React.FC = () => {
           <Campo label="CDI anual em % (ex.: 10.5)" value={taxaCDIAnual} onChange={setTaxaCDIAnual} />
           <Campo label="Prazo (dias)" value={prazoDias} onChange={setPrazoDias} />
         </div>
-        <div className="bg-gray-50 p-6 rounded-lg space-y-4">
-          <h3 className="text-lg font-medium">Resultado</h3>
+        <ResultCard>
           <Linha rotulo="Montante bruto" valor={result ? moeda(result.montanteBruto) : "-"} />
           <Linha rotulo="Rendimento bruto" valor={result ? moeda(result.rendimentoBruto) : "-"} />
           <Linha
@@ -71,7 +71,7 @@ export const CdiCalculator: React.FC = () => {
                 : ""
             }
           />
-        </div>
+        </ResultCard>
       </div>
     </div>
   );
