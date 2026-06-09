@@ -31,40 +31,40 @@ export const GasCalculator: React.FC = () => {
         <div className="space-y-4">
           {/** Campo de Distância */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Distância Percorrida (km)
             </label>
             <input
               type="number"
               value={distance}
               onChange={(e) => setDistance(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
 
           {/** Campo Consumo Médio */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Consumo Médio (km/L)
             </label>
             <input
               type="number"
               value={fuelConsumption}
               onChange={(e) => setFuelConsumption(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
 
           {/** Campo Preço do Combustível */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Preço do Combustível (R$/L)
             </label>
             <input
               type="number"
               value={fuelPrice}
               onChange={(e) => setFuelPrice(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
         </div>
@@ -74,17 +74,17 @@ export const GasCalculator: React.FC = () => {
 
           <div className="space-y-4">
             <div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-fg-muted">
                 Combustível Necessário (L):
               </p>
-              <p className="text-2xl font-bold">
+              <p className="text-2xl font-bold text-fg tabular-nums">
                 {result ? `${result.fuelNeeded.toFixed(2)} L` : "-"}
               </p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-600">Custo Total (R$):</p>
-              <p className="text-2xl font-bold">
+              <p className="text-sm text-fg-muted">Custo Total (R$):</p>
+              <p className="text-2xl font-bold text-brand tabular-nums">
                 {result ? `R$ ${result.totalCost.toFixed(2)}` : "-"}
               </p>
             </div>
