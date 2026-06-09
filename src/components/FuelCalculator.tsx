@@ -30,27 +30,27 @@ export const FuelCalculator: React.FC = () => {
         <div className="space-y-4">
           {/* Campo Preço da Gasolina */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Preço por litro - Gasolina (R$)
             </label>
             <input
               type="number"
               value={gasPrice}
               onChange={(e) => setGasPrice(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
 
           {/* Campo Preço do Etanol */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-fg-muted">
               Preço por litro - Etanol (R$)
             </label>
             <input
               type="number"
               value={etanolPrice}
               onChange={(e) => setEtanolPrice(e.target.value)}
-              className="mt-1 block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 shadow-md transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-line bg-surface-sunken px-4 py-2 shadow-md transition"
             />
           </div>
         </div>
@@ -62,27 +62,27 @@ export const FuelCalculator: React.FC = () => {
           <div className="space-y-4">
             {/* Combustível mais vantajoso */}
             <div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-fg-muted">
                 Combustível mais vantajoso:
               </p>
-              <p className="text-2xl font-bold">
+              <p className="text-2xl font-bold text-brand">
                 {result ? result.betterFuel : "-"}
               </p>
             </div>
 
             {/* Relação etanol/gasolina */}
             <div>
-              <p className="text-sm text-gray-600">Relação Etanol/Gasolina:</p>
-              <p className="text-2xl font-bold">
+              <p className="text-sm text-fg-muted">Relação Etanol/Gasolina:</p>
+              <p className="text-2xl font-bold text-fg tabular-nums">
                 {result ? `${result.ratio.toFixed(2)}%` : "-"}
               </p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-800">
+              <p className="text-sm text-fg-muted">
                 Se resultado menor que 70% Etanol
               </p>
-              <p className="text-sm text-gray-800">
+              <p className="text-sm text-fg-muted">
                 Se resultado maior que 70% Gasolina
               </p>
             </div>
